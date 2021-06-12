@@ -1406,13 +1406,16 @@ public class EmeraldEXRomHandler extends AbstractGBRomHandler {
         }
         int offset = romEntry.getValue("TmMoves");
         for (int i = 1; i <= EmeraldEXConstants.tmCount; i++) {
-            writeWord(offset + (i - 1) * 2, moveIndexes.get(i - 1));
+            int newoffset = offset + (i - 1) * 2;
+            System.out.println("PRINTED TO: " + newoffset);
+            System.out.println("MOVE: " + moveIndexes.get(i - 1));
+            writeWord(newoffset, moveIndexes.get(i - 1));
         }
-        int otherOffset = romEntry.getValue("TmMovesDuplicate");
-        if (otherOffset > 0) {
+        //int otherOffset = romEntry.getValue("TmMovesDuplicate");
+        //if (otherOffset > 0) {
             // Emerald/FR/LG have *two* TM tables
-            System.arraycopy(rom, offset, rom, otherOffset, EmeraldEXConstants.tmCount * 2);
-        }
+            //System.arraycopy(rom, offset, rom, otherOffset, EmeraldEXConstants.tmCount * 2);
+        //}
 
         int iiOffset = romEntry.getValue("ItemImages");
         if (iiOffset > 0) {
@@ -2309,7 +2312,7 @@ public class EmeraldEXRomHandler extends AbstractGBRomHandler {
             mapLoadingDone = true;
         }
         Iterator<Integer> iterTMs = fieldTMs.iterator();
-        int[] givenTMs = new int[512];
+        int[] givenTMs = new int[2048]; // was 512, seems sus. TODO: was the magic number meaningful?
 
         for (ItemLocationInner il : itemOffs) {
             int itemHere = readWord(il.offset);

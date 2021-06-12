@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <project basedir="../.." default="build" name="universal-pokemon-randomizer">
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>

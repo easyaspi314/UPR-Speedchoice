@@ -56,7 +56,7 @@ public class EmeraldEXConstants {
 
     public static final List<Integer> hmMoves = Arrays.asList(0xf, 0x13, 0x39, 0x46, 0x94, 0xf9, 0x7f, 0x123);
 
-    public static final int tmItemOffset = 289;
+    public static final int tmItemOffset = 482;
 
     public static final int rseItemDescCharsPerLine = 18;
 
@@ -172,32 +172,32 @@ public class EmeraldEXConstants {
     }
 
     private static void setupAllowedItems() {
-        allowedItems = new ItemList(376);
+        allowedItems = new ItemList(603);
         // Key items (+1 unknown item)
-        allowedItems.banRange(259, 30);
-        allowedItems.banRange(349, 28);
+        allowedItems.banRange(455, 30); // normal key items
+        allowedItems.banRange(540, 28); // FRLG key items
         // Unknown blank items
-        allowedItems.banRange(52, 11);
-        allowedItems.banRange(87, 6);
-        allowedItems.banRange(99, 4);
-        allowedItems.banRange(112, 9);
-        allowedItems.banRange(176, 3);
-        allowedItems.banRange(226, 28);
-        allowedItems.banRange(347, 2);
-        allowedItems.banSingles(72, 82, 105, 267);
+        //allowedItems.banRange(52, 11);
+        //allowedItems.banRange(87, 6);
+        //allowedItems.banRange(99, 4);
+        //allowedItems.banRange(112, 9);
+        //allowedItems.banRange(176, 3);
+        //allowedItems.banRange(226, 28);
+        //allowedItems.banRange(347, 2);
+        //allowedItems.banSingles(72, 82, 105, 267);
         // HMs
-        allowedItems.banRange(339, 8);
+        allowedItems.banRange(532, 8);
         // TMs
-        allowedItems.tmRange(289, 50);
+        allowedItems.tmRange(482, 50);
 
         // non-bad items
         // ban specific pokemon hold items, berries, apricorns, mail
         nonBadItems = allowedItems.copy();
-        nonBadItems.banSingles(0xCA, 0x8B); // light ball, oran berry
-        nonBadItems.banRange(0x79, 12); // mail
-        nonBadItems.banRange(0x8F, 33); // berries
-        nonBadItems.banRange(0xDE, 4); // pokemon specific
-        nonBadItems.banRange(0xFE, 5); // contest scarves
+        nonBadItems.banSingles(0x16C, 0x96); // light ball, oran berry
+        nonBadItems.banRange(0x84, 12); // mail
+        nonBadItems.banRange(0x9A, 33); // berries
+        nonBadItems.banRange(0x168, 4); // pokemon specific
+        nonBadItems.banRange(0x188, 5); // contest scarves
     }
 
     public static void trainerTagsE(List<Trainer> trs) {

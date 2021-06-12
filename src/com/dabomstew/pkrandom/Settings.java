@@ -81,6 +81,7 @@ public class Settings {
     private boolean allowWonderGuard = true;
     private boolean abilitiesFollowEvolutions;
     private boolean banTrappingAbilities;
+    private boolean banStupidAbilities;
     private boolean banNegativeAbilities;
 
     public enum StartersMod {
@@ -932,8 +933,17 @@ public class Settings {
         return banTrappingAbilities;
     }
 
+    public boolean isBanStupidAbilities() {
+        return banStupidAbilities;
+    }
+
     public Settings setBanTrappingAbilities(boolean banTrappingAbilities) {
         this.banTrappingAbilities = banTrappingAbilities;
+        return this;
+    }
+
+    public Settings setBanStupidAbilities(boolean banStupidAbilities) {
+        this.banStupidAbilities = banStupidAbilities;
         return this;
     }
 
