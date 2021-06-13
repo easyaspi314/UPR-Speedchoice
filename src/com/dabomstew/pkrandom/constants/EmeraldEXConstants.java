@@ -198,6 +198,7 @@ public class EmeraldEXConstants {
         nonBadItems.banRange(0x9A, 33); // berries
         nonBadItems.banRange(0x168, 4); // pokemon specific
         nonBadItems.banRange(0x188, 5); // contest scarves
+        nonBadItems.banRange(0x6F,  7); // apricorns
     }
 
     public static void trainerTagsE(List<Trainer> trs) {

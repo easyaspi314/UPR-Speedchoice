@@ -71,6 +71,8 @@ public class GlobalConstants {
     public static final List<Integer> battleTrappingAbilities = Arrays.asList(23, 42, 71);
 
     public static final List<Integer> negativeAbilities = Arrays.asList(129, 112, 54, 59, 161);
+    
+    public static final List<Integer> stupidAbilities = Arrays.asList(215, 150);
     // Defeatist, Slow Start, Truant, Forecast, Zen Mode
     // To test: Illusion, Imposter
 

@@ -178,7 +178,7 @@ public class Randomizer {
         // Abilities? (new 1.0.2)
         if (romHandler.abilitiesPerPokemon() > 0 && settings.getAbilitiesMod() == Settings.AbilitiesMod.RANDOMIZE) {
             romHandler.randomizeAbilities(settings.isAbilitiesFollowEvolutions(), settings.isAllowWonderGuard(),
-                    settings.isBanTrappingAbilities(), settings.isBanNegativeAbilities());
+                    settings.isBanTrappingAbilities(), settings.isBanNegativeAbilities(), settings.isBanStupidAbilities());
         }
 
         // Pokemon Types

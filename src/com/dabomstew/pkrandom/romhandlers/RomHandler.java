@@ -158,7 +158,7 @@ public interface RomHandler {
     public String abilityName(int number);
 
     public void randomizeAbilities(boolean evolutionSanity, boolean allowWonderGuard, boolean banTrappingAbilities,
-            boolean banNegativeAbilities);
+            boolean banNegativeAbilities, boolean banStupidAbilities);
 
     // Randomizer: wild pokemon
     public List<EncounterSet> getEncounters(boolean useTimeOfDay, boolean condenseSlots);

@@ -1232,6 +1232,10 @@ public class EmeraldEXRomHandler extends AbstractGBRomHandler {
                         writeWord(pointerToPokes + poke * 16 + 14, 0);
                     }
                     if (tp.resetMoves) {
+                        if(!movesets.containsKey(tp.pokemon)) {
+                            // use the moveset of the base form
+                            movesets.put(tp.pokemon, movesets.get(this.pokes[tp.pokemon.number]));
+                        }
                         int[] pokeMoves = RomFunctions.getMovesAtLevel(tp.pokemon, movesets, tp.level);
                         for (int m = 0; m < 4; m++) {
                             writeWord(pointerToPokes + poke * 16 + movesStart + m * 2, pokeMoves[m]);
@@ -1407,8 +1411,6 @@ public class EmeraldEXRomHandler extends AbstractGBRomHandler {
         int offset = romEntry.getValue("TmMoves");
         for (int i = 1; i <= EmeraldEXConstants.tmCount; i++) {
             int newoffset = offset + (i - 1) * 2;
-            System.out.println("PRINTED TO: " + newoffset);
-            System.out.println("MOVE: " + moveIndexes.get(i - 1));
             writeWord(newoffset, moveIndexes.get(i - 1));
         }
         //int otherOffset = romEntry.getValue("TmMovesDuplicate");

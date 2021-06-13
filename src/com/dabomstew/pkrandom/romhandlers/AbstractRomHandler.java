@@ -66,6 +66,7 @@ import com.dabomstew.pkrandom.pokemon.Pokemon;
 import com.dabomstew.pkrandom.pokemon.Trainer;
 import com.dabomstew.pkrandom.pokemon.TrainerPokemon;
 import com.dabomstew.pkrandom.pokemon.Type;
+import java.util.stream.Collectors;
 
 public abstract class AbstractRomHandler implements RomHandler {
 
@@ -552,7 +553,7 @@ public abstract class AbstractRomHandler implements RomHandler {
 
     @Override
     public void randomizeAbilities(boolean evolutionSanity, boolean allowWonderGuard, boolean banTrappingAbilities,
-            boolean banNegativeAbilities) {
+            boolean banNegativeAbilities, boolean banStupidAbilities) {
         // Abilities don't exist in some games...
         if (this.abilitiesPerPokemon() == 0) {
             return;
@@ -572,6 +573,10 @@ public abstract class AbstractRomHandler implements RomHandler {
 
         if (banNegativeAbilities) {
             bannedAbilities.addAll(GlobalConstants.negativeAbilities);
+        }
+        
+        if (banStupidAbilities) {
+            bannedAbilities.addAll(GlobalConstants.stupidAbilities);
         }
 
         final int maxAbility = this.highestAbilityIndex();
@@ -1095,7 +1100,7 @@ public abstract class AbstractRomHandler implements RomHandler {
                 continue; // skip
             }
             for (TrainerPokemon tp : t.pokemon) {
-                boolean wgAllowed = (!noEarlyWonderGuard) || tp.level >= 20;
+                boolean wgAllowed = (!noEarlyWonderGuard) || tp.level >= 100;
                 tp.pokemon = pickReplacement(tp.pokemon, usePowerLevels, null, noLegendaries, wgAllowed);
                 tp.resetMoves = true;
                 if (levelModifier != 0) {
@@ -3640,19 +3645,22 @@ public abstract class AbstractRomHandler implements RomHandler {
         }
     }
 
-    private Pokemon fullyEvolve(Pokemon pokemon) {
+private Pokemon fullyEvolve(Pokemon pokemon) {
         Set<Pokemon> seenMons = new HashSet<Pokemon>();
         seenMons.add(pokemon);
 
         while (true) {
-            if (pokemon.evolutionsFrom.size() == 0) {
+            List<Evolution> validEvolutions = pokemon.evolutionsFrom.stream().filter(
+                    e -> (e.type != EvolutionType.MEGA_EVOLUTION && e.type != EvolutionType.MEGA_EVOLUTION_MOVE))
+                    .collect(Collectors.toList());
+            if (validEvolutions.size() == 0) {
                 // fully evolved
                 break;
             }
 
             // check for cyclic evolutions from what we've already seen
             boolean cyclic = false;
-            for (Evolution ev : pokemon.evolutionsFrom) {
+            for (Evolution ev : validEvolutions) {
                 if (seenMons.contains(ev.to)) {
                     // cyclic evolution detected - bail now
                     cyclic = true;
@@ -3665,7 +3673,7 @@ public abstract class AbstractRomHandler implements RomHandler {
             }
 
             // pick a random evolution to continue from
-            pokemon = pokemon.evolutionsFrom.get(random.nextInt(pokemon.evolutionsFrom.size())).to;
+            pokemon = validEvolutions.get(random.nextInt(validEvolutions.size())).to;
             seenMons.add(pokemon);
         }
 
