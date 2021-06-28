@@ -94,7 +94,7 @@ public class EmeraldEXConstants {
 
     public static final List<Integer> rseEarlyRequiredHMMoves = Arrays.asList(249);
     
-    public static final int luckyEggIndex = 0xC5;
+    public static final int luckyEggIndex = 0xE2;
 
     private static Type[] constructTypeTable() {
         Type[] table = new Type[256];

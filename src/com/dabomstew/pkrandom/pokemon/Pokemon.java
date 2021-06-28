@@ -385,9 +385,14 @@ public class Pokemon implements Comparable<Pokemon> {
         return (number == o.number) ? speciesNumber - o.speciesNumber : number - o.number;
     }
 
+    // This list contains Mythicals too: even Phione, for complete-ness.
+    // Note: in order to count the Galarian birds, their direct EX values are
+    // used which are 975-977.
     private static final List<Integer> legendaries = Arrays.asList(144, 145, 146, 150, 151, 243, 244, 245, 249, 250,
             251, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 479, 480, 481, 482, 483, 484, 485, 486, 487, 488,
-            489, 490, 491, 492, 493, 494, 638, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649);
+            489, 490, 491, 492, 493, 494, 638, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 716, 717, 718, 
+            719, 720, 721, 772, 773, 785, 786, 787, 788, 789, 790, 791, 792, 800, 801, 802, 807, 808, 809, 888, 889,
+            890, 891, 892, 893, 894, 895, 896, 897, 898, 975, 976, 977);
 
     public boolean isLegendary() {
         return legendaries.contains(this.number);
