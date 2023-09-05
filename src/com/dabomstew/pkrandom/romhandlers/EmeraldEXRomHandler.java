@@ -2469,6 +2469,14 @@ public class EmeraldEXRomHandler extends AbstractGBRomHandler {
     }
 
     @Override
+    public List<Integer> getGameBreakingMoves() {
+        // Ban Dragon Darts because it is a 50bp move that hits 2-5 times instead of just twice
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        list.add(697); // MOVE_DRAGON_DARTS
+        return list;
+    }
+
+    @Override
     public List<Integer> getFieldMoves() {
         // cut, fly, surf, strength, flash,
         // dig, teleport, waterfall,
